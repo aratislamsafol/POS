@@ -1,9 +1,12 @@
 
+import { useState } from 'react';
 import styles from '../assets/css/registration.module.css';
 import HorizontalCard from '../components/Authenication/HorizontalCard';
 import RegistrationForm from '../components/Authenication/RegistrationForm';
 import SidebarCard from '../components/Authenication/SidebarCard';
+import SubmittingOverlay from '../components/Authenication/SubmittingOverlay';
 const Registration = () => {
+      const [isSubmitting, setIsSubmitting] = useState(false);
   return (
     <div className={`${styles.custom_font} bg-[url('./assets/image/bg_auth.png')] bg-cover bg-center h-screen`}>
       <div className="flex justify-center items-center w-full h-full">
@@ -27,10 +30,8 @@ const Registration = () => {
                         <HorizontalCard />
                     </div>
                     <div className='my-4 mt-7 md:mr-3'>
-                        <RegistrationForm/>
+                        <RegistrationForm setIsSubmitting={setIsSubmitting} isSubmitting={isSubmitting}/>
                     </div>
-
-                    
                     
                 </div>
                 {/* image learn side */}
@@ -40,6 +41,8 @@ const Registration = () => {
             </div>
         </div>
       </div>
+
+      {isSubmitting && <SubmittingOverlay/>}
     </div>
   )
 }
