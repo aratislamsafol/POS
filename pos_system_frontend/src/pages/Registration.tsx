@@ -6,7 +6,7 @@ import RegistrationForm from '../components/Authenication/RegistrationForm';
 import SidebarCard from '../components/Authenication/SidebarCard';
 import SubmittingOverlay from '../components/Authenication/SubmittingOverlay';
 const Registration = () => {
-      const [isSubmitting, setIsSubmitting] = useState(false);
+    const [isSubmitting, setIsSubmitting] = useState(false);
   return (
     <div className={`${styles.custom_font} bg-[url('./assets/image/bg_auth.png')] bg-cover bg-center h-screen`}>
       <div className="flex justify-center items-center w-full h-full">
@@ -15,7 +15,7 @@ const Registration = () => {
                 {/* content side */}
                 <div className="col-span-7 lg:col-span-5">
                     <h2 className="text-2xl font-bold text-gray-900 tracking-wide">Registration</h2>
-                    <p className="text-sm text-gray-800 mt-3">Step one of two</p>
+                    <p className="text-sm text-gray-800 mt-3">Step one of one</p>
                     <div className="flex justify-between my-2">
                         <div className="rounded-2xl bg-[#D5DBE2] shadow-2xl w-13 h-13 flex items-center justify-center">
                             <p className="text-xl font-semibold text-gray-800">1</p>
@@ -23,8 +23,6 @@ const Registration = () => {
                         <div className='hidden sm:block'>
                             <HorizontalCard />
                         </div>
-                        
-                        
                     </div>
                     <div className='sm:hidden'>
                         <HorizontalCard />
@@ -34,7 +32,7 @@ const Registration = () => {
                     </div>
                     
                 </div>
-                {/* image learn side */}
+                {/* creating account process show*/}
                 <div className="col-span-0 hidden lg:block lg:col-span-2">
                     <SidebarCard/>
                 </div>

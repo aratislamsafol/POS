@@ -6,8 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class User extends Model
 {
-    protected $fillable = ['firstName', 'lastName', 'email', 'mobile', 'password', 'otp'];
+    protected $fillable = ['firstName', 'lastName', 'email', 'mobile', 'password', 'otp', 'otp_expires_at'];
     protected $attributes = [
-        'otp' => '0'
+        'otp' => '0',
     ];
 }

@@ -16,14 +16,21 @@ class TokenVerificationMiddleware
      */
     public function handle(Request $request, Closure $next): Response
     {
-        $token = $request->header('token');
+        $token = $request->cookie('reset_token');
+        if (!$token) {
+            return response()->json([
+                'status' => 'failed',
+                'message' => 'Unauthorized: No token provided',
+            ], 401);
+        }
+
         $result=JWTToken::VerifyToken($token);
 
         if($result == 'Unauthorized') {
             return response()->json([
                 'status'=>'failed',
-                'message'=> 'unauthraized'
-            ]);
+                'message'=> 'unauthraized',
+            ],401);
         } else{
             $request->headers->set('email', $result);
             return $next($request);

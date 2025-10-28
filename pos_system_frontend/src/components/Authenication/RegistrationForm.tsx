@@ -2,6 +2,7 @@ import type{ ChangeEvent, FormEvent } from "react";
 import {useState} from "react";
 import { Button, Input } from "@headlessui/react";
 import { EyeIcon, EyeOffIcon } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 interface FormData {
   firstName: string;
@@ -29,6 +30,7 @@ interface Props {
 }
 
 const RegistrationForm = ({ onSubmitStart, onSubmitEnd, isSubmitting, setIsSubmitting }: Props) => {
+  const navigate = useNavigate();
   const [formData, setFormData] = useState<FormData>({
     firstName: "",
     lastName: "",
@@ -108,6 +110,8 @@ const RegistrationForm = ({ onSubmitStart, onSubmitEnd, isSubmitting, setIsSubmi
         confirmPassword: "",
       });
       setErrors({});
+      navigate("/login");
+
     } catch (error: any) {
       console.error("API Error:", error);
       alert(error.message || "Something went wrong");
@@ -184,30 +188,45 @@ const RegistrationForm = ({ onSubmitStart, onSubmitEnd, isSubmitting, setIsSubmi
         </div>
       ))}
 
-      <div className="flex gap-2 mt-6 justify-end sm:col-span-2">
-        <Button
-          type="submit"
-          className="text-sm px-4 py-2 rounded-full w-fit font-medium text-white
-                     bg-stone-400 shadow-md border border-transparent
-                     hover:bg-green-600 hover:shadow-lg hover:-translate-y-0.5
-                     transition-all duration-300 ease-in-out cursor-pointer"
-          disabled={isSubmitting}
-        >
-          Submit
-        </Button>
+      <div className="flex gap-2 mt-6 justify-between sm:col-span-2 items-center">
+  {/* Left side button */}
+  <Button
+    type="button"
+    onClick={() => navigate(-1)} 
+    className="text-sm px-4 py-2 rounded-full font-medium text-white
+               bg-gray-400 shadow-md border border-transparent
+               hover:bg-gray-500 hover:shadow-lg hover:-translate-y-0.5
+               transition-all duration-300 ease-in-out cursor-pointer"
+  >
+    ← Back
+  </Button>
 
-        <Button
-          type="button"
-          onClick={handleCancel}
-          className="text-sm px-4 py-2 rounded-full w-fit font-medium text-white
-                     bg-stone-400 shadow-md border border-transparent
-                     hover:bg-red-500 hover:shadow-lg hover:-translate-y-0.5
-                     transition-all duration-300 ease-in-out cursor-pointer"
-          disabled={isSubmitting}
-        >
-          Cancel
-        </Button>
-      </div>
+  {/* Right side buttons */}
+  <div className="flex gap-2">
+    <Button
+      type="submit"
+      className="text-sm px-4 py-2 rounded-full w-fit font-medium text-white
+                 bg-stone-400 shadow-md border border-transparent
+                 hover:bg-green-600 hover:shadow-lg hover:-translate-y-0.5
+                 transition-all duration-300 ease-in-out cursor-pointer"
+      disabled={isSubmitting}
+    >
+      Submit
+    </Button>
+
+    <Button
+      type="button"
+      onClick={handleCancel}
+      className="text-sm px-4 py-2 rounded-full w-fit font-medium text-white
+                 bg-stone-400 shadow-md border border-transparent
+                 hover:bg-red-500 hover:shadow-lg hover:-translate-y-0.5
+                 transition-all duration-300 ease-in-out cursor-pointer"
+      disabled={isSubmitting}
+    >
+      Cancel
+    </Button>
+  </div>
+</div>
 
     </form>
   );
