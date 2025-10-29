@@ -8,6 +8,8 @@ import ProtectedRoute from "./ProtectedRoute";
 import ForgetPage from "../pages/SendOtpPage";
 import OTPVerifyPage from "../pages/OtpVerifyPage";
 import ResetPassowrdPage from "../pages/ResetPassowrdPage";
+import UserProfle from "../pages/UserProfle";
+import DashBoardLayout from "../root/DashBoardLayout";
 
 const router = createBrowserRouter([
     {
@@ -23,10 +25,6 @@ const router = createBrowserRouter([
                 element: <GuestRoute><Login/></GuestRoute>
             },
             {
-                path: '/dashboard',
-                element:  <ProtectedRoute><Dashboard/></ProtectedRoute>
-            },
-            {
                 path: '/send-otp',
                 element:  <ForgetPage />
             },
@@ -34,15 +32,23 @@ const router = createBrowserRouter([
                 path: '/otp-verify',
                 element:  <OTPVerifyPage />
             },
-             {
+            {
                 path: '/reset-password',
-                element:  <ResetPassowrdPage />
+                element:  <ProtectedRoute><ResetPassowrdPage /></ProtectedRoute>
             },
         ]
-    }, {
-        path:"*", 
-        element:<Navigate to="/dashboard" />
-    }
+    }, 
+    {    
+        path: '/dashboard',
+        element:  <ProtectedRoute><DashBoardLayout/></ProtectedRoute>,
+        // children: [
+        //     {
+        //         path: '/user-profile',
+        //         element: <UserProfle />
+        //     }
+        // ]
+    },
+    
 ]);
 
 export default router;

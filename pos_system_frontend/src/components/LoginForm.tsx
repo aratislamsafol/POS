@@ -87,10 +87,17 @@ const LoginForm = ({
 
       if (!response.ok) {
         const errData = await response.json();
-        throw new Error(errData.message || "Registration failed");
+        throw new Error(errData.message || "login failed");
       }
 
+
+
       const data = await response.json();
+
+      if(data.status === 'failed') {
+         alert("Login Failed!");
+         return;
+      }
       console.log("Api Data:", data);
       setToken(data.token);
       alert("Login Successful!");

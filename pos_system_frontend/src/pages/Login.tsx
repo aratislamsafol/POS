@@ -27,8 +27,8 @@ const Login = () => {
             <Link className="p-1 px-3 border text-white
               bg-stone-400 shadow-md text-sm border-transparent
               hover:bg-green-600 hover:shadow-lg hover:-translate-y-0.5
-              transition-all duration-300 ease-in-out cursor-pointer rounded-2xl" to="registration">Sign Up</Link>
-            <Link className="text-blue-600 hover:text-blue-800" to="registration">Forget Password</Link>
+              transition-all duration-300 ease-in-out cursor-pointer rounded-2xl" to="/registration">Sign Up</Link>
+            <Link className="text-blue-600 hover:text-blue-800" to="/send-otp">Forget Password</Link>
           </div>
         </div>
       </div>

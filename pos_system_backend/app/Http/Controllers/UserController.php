@@ -30,17 +30,18 @@ class UserController extends Controller
 
     public function UserLogin(Request $request)
     {
-        $count = User::where('email', '=', $request->input('email'))
+        $user = User::where('email', '=', $request->input('email'))
             ->where('password', '=', $request->input('password'))
-            ->count();
+            ->first();
+            // return response()->json(['user'=> $user]);
+        if ($user) {
+            $token = JWTToken::CreateToken($user->email, $user->id);
 
-        if ($count == 1) {
-            $token = JWTToken::CreateToken($request->input('email'));
             return response()->json([
                 'status'  => 'success',
                 'message' => 'User Login Successful',
                 'token'   => $token,
-            ])->cookie('token', $token, 60*24, '/', null, true, true);
+            ])->cookie('token', $token, 60 * 24, '/', null, true, true);
 
         } else {
             return response()->json([
@@ -52,26 +53,25 @@ class UserController extends Controller
 
     public function SendOTPCode(Request $request)
     {
-        $email=$request->input('email');
-        $otp=rand(100000,999999);
-        $count=User::where('email','=',$email)->count();
+        $email = $request->input('email');
+        $otp   = rand(100000, 999999);
+        $count = User::where('email', '=', $email)->count();
 
-        if($count==1){
+        if ($count == 1) {
             // OTP Email Address
             Mail::to($email)->send(new OTPMail($otp));
             // OTO Code Table Update
-            User::where('email','=',$email)->update(['otp'=>$otp]);
+            User::where('email', '=', $email)->update(['otp' => $otp]);
 
             return response()->json([
-                'status' => 'success',
-                'email' => $email,
-                'message' => '6 Digit OTP Code has been send to your email !'
-            ],200);
-        }
-        else{
+                'status'  => 'success',
+                'email'   => $email,
+                'message' => '6 Digit OTP Code has been send to your email !',
+            ], 200);
+        } else {
             return response()->json([
-                'status' => 'failed',
-                'message' => 'unauthorized'
+                'status'  => 'failed',
+                'message' => 'unauthorized',
             ]);
         }
     }
@@ -80,14 +80,14 @@ class UserController extends Controller
     {
         $email = $request->input('email');
         $otp   = $request->input('otp');
-        $count = User::where('email', '=', $email)
-            ->where('otp', '=', $otp)->count();
+        $user = User::where('email', '=', $email)
+            ->where('otp', '=', $otp)->first();
 
-        if ($count == 1) {
+        if ($user) {
             // Database otp
             User::where('email', '=', $email)->update(['otp' => 0]);
-            $token = JWTToken::CreateToken($request->input('email'));
-            // $secure = app()->environment('production'); 
+            $token = JWTToken::CreateToken($request->input('email'), $user->id );
+            // $secure = app()->environment('production');
             return response()->json([
                 'status'  => 'success',
                 'message' => 'OTP Verification Successful',
@@ -106,8 +106,8 @@ class UserController extends Controller
     {
         try {
             $userEmail = $request->header('email');
-            
-            User::where('email', '=', $userEmail)->update(['password'=> $request->input('newPassword')]);
+
+            User::where('email', '=', $userEmail)->update(['password' => $request->input('newPassword')]);
             return response()->json([
                 'status'  => 'success',
                 'message' => 'Request Successful',
@@ -122,11 +122,19 @@ class UserController extends Controller
     }
 
     public function UserLogout()
-{
-    return response()->json([
-        'status' => 'success',
-        'message' => 'Logout successful'
-    ])->cookie('token', '', -1, '/', null, true, true);
-}
+    {
+        return response()->json([
+            'status'  => 'success',
+            'message' => 'Logout successful',
+        ])->cookie('token', '', -1, '/', null, true, true);
+    }
+
+    public function UserProfile() {
+
+    }
+
+    public function UpdateProfile() {
+            
+    }
 
 }

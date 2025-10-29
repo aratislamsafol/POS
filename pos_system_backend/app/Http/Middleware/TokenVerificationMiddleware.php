@@ -25,14 +25,14 @@ class TokenVerificationMiddleware
         }
 
         $result=JWTToken::VerifyToken($token);
-
+        // dd($result);
         if($result == 'Unauthorized') {
             return response()->json([
                 'status'=>'failed',
                 'message'=> 'unauthraized',
             ],401);
         } else{
-            $request->headers->set('email', $result);
+            $request->headers->set('email', $result->userEmail);
             return $next($request);
         }
     }

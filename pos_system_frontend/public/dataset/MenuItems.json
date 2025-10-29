@@ -1,0 +1,53 @@
+[
+  {
+    "label": "Dashboard",
+    "icon": "LayoutDashboard",
+    "roles": ["admin", "customer", "supplier", "staff"]
+  },
+  {
+    "label": "User",
+    "icon": "Users",
+    "roles": ["admin"]
+  },
+  {
+    "label": "Authentication",
+    "icon": "Lock",
+    "roles": ["admin", "staff", "customer", "supplier"],
+    "children": [
+      { "label": "Sign In", "roles": ["admin", "staff", "customer", "supplier"] },
+      { "label": "Sign Up", "roles": ["admin", "staff", "customer", "supplier"] },
+      { "label": "Password Reset", "roles": ["admin", "staff", "customer", "supplier"] },
+      { "label": "Password Create", "roles": ["admin"] },
+      { "label": "Logout", "icon": "LogOut", "roles": ["admin", "staff", "customer", "supplier"] }
+    ]
+  },
+  {
+    "label": "Profile",
+    "icon": "User",
+    "roles": ["admin", "staff", "customer", "supplier"],
+    "children": [
+      { "label": "Update Profile", "roles": ["admin", "staff", "customer", "supplier"] },
+      { "label": "Show Profile", "roles": ["admin", "staff", "customer", "supplier"] }
+    ]
+  },
+  {
+    "label": "Category",
+    "icon": "ChartBarStacked",
+    "roles": ["admin", "supplier", "staff"],
+    "children": [
+      { "label": "Electronics", "roles": ["admin", "supplier"] },
+      { "label": "Furniture", "roles": ["admin", "supplier"] },
+      { "label": "Clothing", "roles": ["admin", "supplier"] }
+    ]
+  },
+  {
+    "label": "Sale",
+    "icon": "DollarSign",
+    "roles": ["admin", "staff"],
+    "children": [
+      { "label": "Today", "roles": ["admin", "staff"] },
+      { "label": "This Week", "roles": ["admin", "staff"] },
+      { "label": "This Month", "roles": ["admin", "staff"] }
+    ]
+  }
+]
