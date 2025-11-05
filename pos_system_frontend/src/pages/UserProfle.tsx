@@ -1,7 +1,7 @@
 const UserProfle = () => {
   return (
     <div>
-      
+      use Profile page
     </div>
   )
 }

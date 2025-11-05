@@ -1,8 +1,8 @@
 import { Outlet } from "react-router-dom";
 import MenuOffCanvas from "../components/Dashboard/MenuOffCanvas";
 import clsx from "clsx";
-import { useSidebarStore } from "../store/usesidebarStore";
-import DashBoardContent from "../components/Dashboard/DashBoardContent";
+import { useSidebarStore } from "../store/useSidebarStore";
+// import DashBoardContent from "../components/Dashboard/DashBoardContent";
 
 const DashBoardLayout = () => {
   const open = useSidebarStore((state) => state.open);
@@ -27,10 +27,22 @@ const DashBoardLayout = () => {
             "flex-1 transition-all duration-500 ease-in-out"
           )}
         >
-          <DashBoardContent open={open} setOpen={setOpen} />
-          <div className="p-4 transition-all duration-500 ease-in-out">
-            <Outlet />
+           {/* mobile menuBar */}
+           <div className={clsx('z-10 border-gray-300 border-b')}>
+          <div className="flex flex-col gap-1 group cursor-pointer p-[15px] w-fit transition-all duration-500 ease-in-out" onClick={()=>setOpen(!open)}>
+            <p className={clsx(
+              'rounded-md h-[2px] bg-gray-400 group-hover:bg-gray-500', open ? 'w-5': 'w-4' 
+            )}></p>
+            <p className={clsx(
+              'rounded-md h-[2px] bg-gray-400 group-hover:bg-gray-500', open?'w-4':' w-5'
+            )}></p>
+            <p className={clsx(
+              'rounded-md h-[2px] bg-gray-400 group-hover:bg-gray-500', open?'w-5': 'w-4'
+            )}></p>
           </div>
+          </div>
+           <Outlet />
+          
         </div>
       </div>
     </div>

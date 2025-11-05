@@ -1,4 +1,4 @@
-import { useSidebarStore } from "./usesidebarStore";
+import { useSidebarStore } from "./useSidebarStore";
 import { iconMap } from "../components/Dashboard/IconMapper";
 import menuJson from "../../public/dataset/MenuItems.json";
 

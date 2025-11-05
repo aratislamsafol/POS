@@ -2,23 +2,24 @@
   {
     "label": "Dashboard",
     "icon": "LayoutDashboard",
-    "roles": ["admin", "customer", "supplier", "staff"]
+    "roles": ["admin", "customer", "supplier", "staff"],
+    "path": "/dashboard"
   },
   {
     "label": "User",
     "icon": "Users",
-    "roles": ["admin"]
+    "roles": ["admin"],
+    "path": "/dashboard/user"
   },
   {
     "label": "Authentication",
     "icon": "Lock",
     "roles": ["admin", "staff", "customer", "supplier"],
     "children": [
-      { "label": "Sign In", "roles": ["admin", "staff", "customer", "supplier"] },
-      { "label": "Sign Up", "roles": ["admin", "staff", "customer", "supplier"] },
-      { "label": "Password Reset", "roles": ["admin", "staff", "customer", "supplier"] },
-      { "label": "Password Create", "roles": ["admin"] },
-      { "label": "Logout", "icon": "LogOut", "roles": ["admin", "staff", "customer", "supplier"] }
+      { "label": "Sign In", "roles": ["admin", "staff", "customer", "supplier"], "path": "/login" },
+      { "label": "Sign Up", "roles": ["admin", "staff", "customer", "supplier"], "path": "/registration" },
+      { "label": "Password Reset", "roles": ["admin", "staff", "customer", "supplier"], "path": "/send-otp" },
+      { "label": "Logout", "icon": "LogOut", "roles": ["admin", "staff", "customer", "supplier"], "path": "/logout" }
     ]
   },
   {
@@ -26,8 +27,8 @@
     "icon": "User",
     "roles": ["admin", "staff", "customer", "supplier"],
     "children": [
-      { "label": "Update Profile", "roles": ["admin", "staff", "customer", "supplier"] },
-      { "label": "Show Profile", "roles": ["admin", "staff", "customer", "supplier"] }
+      { "label": "Show Profile", "roles": ["admin", "staff", "customer", "supplier"], "path": "/dashboard/profile/show" },
+      { "label": "Update Profile", "roles": ["admin", "staff", "customer", "supplier"], "path": "/dashboard/profile/update" }
     ]
   },
   {
@@ -35,9 +36,9 @@
     "icon": "ChartBarStacked",
     "roles": ["admin", "supplier", "staff"],
     "children": [
-      { "label": "Electronics", "roles": ["admin", "supplier"] },
-      { "label": "Furniture", "roles": ["admin", "supplier"] },
-      { "label": "Clothing", "roles": ["admin", "supplier"] }
+      { "label": "Electronics", "roles": ["admin", "supplier"], "path": "/dashboard/category/electronics" },
+      { "label": "Furniture", "roles": ["admin", "supplier"], "path": "/dashboard/category/furniture" },
+      { "label": "Clothing", "roles": ["admin", "supplier"], "path": "/dashboard/category/clothing" }
     ]
   },
   {
@@ -45,9 +46,9 @@
     "icon": "DollarSign",
     "roles": ["admin", "staff"],
     "children": [
-      { "label": "Today", "roles": ["admin", "staff"] },
-      { "label": "This Week", "roles": ["admin", "staff"] },
-      { "label": "This Month", "roles": ["admin", "staff"] }
+      { "label": "Today", "roles": ["admin", "staff"], "path": "/dashboard/sale/today" },
+      { "label": "This Week", "roles": ["admin", "staff"], "path": "/dashboard/sale/week" },
+      { "label": "This Month", "roles": ["admin", "staff"], "path": "/dashboard/sale/month" }
     ]
   }
 ]
